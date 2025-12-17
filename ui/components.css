@@ -1,0 +1,201 @@
+.dropDownButton {
+  background-color: #E50019;
+  width: 68;
+  height: 68px;
+  border: none;
+  position:absolute;
+  right: 0px;
+}
+
+.dropDownButton:hover {
+  background-color: #E52A1A;
+}
+
+.dropDownMenu {
+  width: 100%;
+  height: 68px;
+  background-color: #E50019;
+  position: absolute;
+}
+
+.dropDownContent {
+  display: none;
+  background-color: white;
+  width: 220px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  position: absolute;
+  right: 0%;
+  top: 68px;
+}
+
+.dropDownContent .dropDownContentButton{
+  display: block;
+  width: 220px;
+  border-left: 2px solid #E50019;
+  border-right: 2px solid #E50019;
+  border-top: 1px solid #E50019;
+  border-bottom: 1px solid #E50019;
+  color: black;
+  padding: 6px 8px;
+  text-decoration: none;
+}
+
+.dropDownMenu:hover .dropDownContent {display: block;}
+
+.screen {
+  width: 240px;
+  height: 400px;
+  top: 200px;
+  padding: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.LSLoginLogo {
+  position: relative;
+  width: 192px;
+  height: 50px;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.title{
+  position: relative;
+  top: 30px;
+  width: 290px;
+  height: 40px;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+}
+
+.frame {
+  border: 2px solid #E50019;
+  border-radius: 10px;
+  position: relative;
+  top: 30px;
+  width: 250px;
+  padding: 20px;
+  left: 50%;
+  transform: translate(-50%);
+  margin-bottom: 20px;
+}
+
+.loginText{
+  position: relative;
+  width: 240px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loginArea{
+  position: relative;
+  width:  240px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.passwordText{
+  position: relative;
+  width: 240px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.passwordArea{
+  position: relative;
+  width: 240px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.acceptButtonContainer{
+  position: relative;
+  display:flex;
+  justify-content: flex-end;
+}
+
+.password-section {
+  position: relative;
+  display: inline-block;
+}
+
+.password-section .PasswordEye {
+  position: absolute;
+  width: 18px;
+  height: 16px;
+  top: 22px;
+  right: 4px; 
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.versionText {
+  position: relative;
+  top: 50px;
+  width: 290px;
+  height: 40px;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+  font-size: 12px;
+}
+
+input:invalid {
+  border: 1px dashed red;
+}
+
+input:valid {
+  border: 1px solid black;
+}
+
+.acceptButtonSaveReboot {
+  margin-left: 4px;
+  border-radius: 4px;
+  border: 1px solid #FFFFFF;
+  height: 42px;
+  width: 122px;
+  background-image:url('SaveRebootButton.png');
+}
+
+.acceptButtonSave {
+  border-radius: 4px;
+  border: 1px solid #FFFFFF;
+  height: 42px;
+  width: 122px;
+  background-image:url('SaveButton.png');
+}
+
+.acceptButtonEnter {
+  border-radius: 4px;
+  border: 1px solid #FFFFFF;
+  height: 42px;
+  width: 122px;
+  background-image:url('Enter.png');
+}
+
+.acceptButtonReset {
+  border-radius: 4px;
+  border: 1px solid #FFFFFF;
+  height: 42px;
+  width: 82px;
+  background-image:url('Reset.png');
+}
+
+.acceptButtonReboot {
+  margin-left: 6px;
+  border-radius: 4px;
+  border: 1px solid #FFFFFF;
+  height: 42px;
+  width: 162px;
+  background-image:url('Reboot.png');
+}

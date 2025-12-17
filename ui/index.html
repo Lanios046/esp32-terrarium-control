@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru" xml:lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="BLE transponder">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BLE transponder</title>
+    <link inline rel="stylesheet" href="components.css">
+    <link inline rel="stylesheet" href="normalize.css">
+    <link inline rel="stylesheet" href="toastify/toastify.css">
+
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon192.png">
+
+    <meta name="theme-color" content="#ffffff">
+
+    <script type='text/javascript' inline src="settings.js"></script>
+    <script type='text/javascript' inline src="toastify/toastify.js"></script>
+    <style>
+        html {
+            min-height: 100%;
+        }
+        body {
+            height: 100%;
+            margin: 0;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: black;
+            background: rgb(255, 255, 255);
+        }
+    </style>
+</head>
+<body>
+
+<div class="mainMenu" id="MAINMENU">
+    <div class="dropDownMenu">
+      <button class="dropDownButton">
+        <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_d_16_213)">
+            <path d="M8 48C8 46.3431 9.34315 45 11 45H57C58.6569 45 60 46.3431 60 48V50C60 51.6569 58.6569 53 57 53H11C9.34314 53 8 51.6569 8 50V48Z" fill="white"/>
+            </g>
+            <g filter="url(#filter1_d_16_213)">
+            <path d="M8 33C8 31.3431 9.34315 30 11 30H57C58.6569 30 60 31.3431 60 33V35C60 36.6569 58.6569 38 57 38H11C9.34314 38 8 36.6569 8 35V33Z" fill="white"/>
+            </g>
+            <g filter="url(#filter2_d_16_213)">
+            <path d="M8 18C8 16.3431 9.34315 15 11 15H57C58.6569 15 60 16.3431 60 18V20C60 21.6569 58.6569 23 57 23H11C9.34314 23 8 21.6569 8 20V18Z" fill="white"/>
+            </g>
+            <defs>
+            <filter id="filter0_d_16_213" x="4" y="45" width="60" height="16" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_16_213"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_16_213" result="shape"/>
+            </filter>
+            <filter id="filter1_d_16_213" x="4" y="30" width="60" height="16" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_16_213"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_16_213" result="shape"/>
+            </filter>
+            <filter id="filter2_d_16_213" x="4" y="15" width="60" height="16" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_16_213"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_16_213" result="shape"/>
+            </filter>
+            </defs>
+        </svg>      
+      </button>
+      <div class="dropDownContent" id="dropDownMenuPanel">
+        <input class="dropDownContentButton" id="WiFiButton" type="submit" onclick='open_wifi_screen()' value="Настройки Wi-Fi">
+        <input class="dropDownContentButton" id="AccountButton" type="submit" onclick='open_account_screen()' value="Учетная запись">
+        <input class="dropDownContentButton" id="AccountButton" type="submit" onclick='open_intervals_screen()' value="Интервалы">
+        <input class="dropDownContentButton" id="SystemButton" type="submit" onclick='open_system_screen()' value="Система">
+      </div>
+    </div>
+</div>
+
+<div class="screen" id="LOGINSCREEN">
+
+  <div class="LSLoginLogo">
+    <img src="logo.png" alt="Logo">
+  </div>
+
+  <div class="title">
+    <span><b>Ретранслятор смарт-зондов</b></span>
+  </div>
+  
+  <div class="frame" id="LSLoginFrame">
+      <span class="loginText" id="LSLoginText"><b>Логин</b></span>
+      <br>
+      <input class="loginArea" id="LSLoginArea" type="text" rows="1" maxlength="20" >
+      <br>
+      <span class="passwordText" id="LSPasswordText"><b>Пароль</b></span>
+      <br>
+      <div class="password-section">
+        <input class="passwordArea" id="LSPasswordArea" type="password" rows="1" maxlength="20">
+        <img src="eye.png" class="PasswordEye" id="LSPasswordEye" onclick="swap_main_password_visible()"> 
+      </div>
+      <br>
+      <div class="acceptButtonContainer" id="LSAcceptButtonContainer">
+        <button class="acceptButtonEnter" id="LSAcceptButton" type="submit" onclick='try_auth()'>
+      </div>
+  </div>
+  <div class="versionText">
+    <span class="versionTextTitle"><i>...</i></span>
+  </div>
+</div>
+
+<div class="screen" id="WIFISCREEN">
+
+  <div class="title">
+    <span><b>Настройки Wi-Fi</b></span>
+  </div>
+  
+  <div class="frame" id="WiFiLoginFrame">
+      <span class="loginText" id="WiFiLoginText"><b>Wi-Fi SSID</b></span>
+      <br>
+      <input class="loginArea" id="WiFiLoginArea" type="text" rows="1" maxlength="32" required pattern="[\w \s]{3,32}"> <!-- 3 - 32 char-->
+      <br>
+      <span class="passwordText" id="WiFiPasswordText"><b>Пароль</b></span>
+      <br>
+      <div class="password-section">
+        <input class="passwordArea" id="WiFiPasswordArea" type="password" rows="1" maxlength="32" required pattern="[\S]{8,32}"> <!-- 8 - 32 non whitespace char-->
+        <img src="eye.png" class="PasswordEye" id="WiFiPasswordEye" onclick="swap_wifi_password_visible()"> 
+      </div>
+      <br>
+      <div class="acceptButtonContainer" id="WiFiAcceptButtonContainer">
+        <button class="acceptButtonSave" id="WiFiAcceptButton" type="submit" onclick='set_wifi_settings()'>
+        <button class="acceptButtonSaveReboot" id="WiFiAcceptButtonReboot" type="submit" onclick='set_wifi_settings_and_reboot()'>
+      </div>
+  </div>
+  <div class="versionText">
+    <span class="versionTextTitle"><i>...</i></span>
+  </div>
+</div>
+
+<div class="screen" id="ACCOUNTSCREEN">
+  <div class="title">
+    <span><b>Настройки учетной записи</b></span>
+  </div>
+  
+  <div class="frame" id="AccLoginFrame">
+      <span class="loginText" id="AccLoginText"><b>E-mail</b></span>
+      <br>
+      <input class="loginArea" id="AccLoginArea" type="text" rows="1" maxlength="32" required pattern="[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"> <!-- email regexp -->
+      <br>
+      <span class="passwordText" id="AccPasswordText"><b>Пароль</b></span>
+      <br>
+      <div class="password-section">
+        <input class="passwordArea" id="AccPasswordArea" type="password" rows="1" maxlength="32" required pattern="[\S]{3,32}"> <!-- 3 - 32 non whitespace char-->
+        <img src="eye.png" class="PasswordEye" id="AccPasswordEye" onclick="swap_account_password_visible()"> 
+      </div>
+      <br>
+      <div class="acceptButtonContainer" id="AccAcceptButtonContainer">
+        <button class="acceptButtonSave" id="AccAcceptButton" type="submit" onclick='set_account_settings()'>
+      </div>
+  </div>
+  <div class="versionText">
+    <span class="versionTextTitle"><i>...</i></span>
+  </div>
+</div>
+
+<div class="screen" id="INTERVALSSCREEN">
+  <div class="title">
+    <span><b>Настройки периодов</b></span>
+  </div>
+  
+  <div class="frame" id="IntervalLoginFrame">
+      <span class="loginText" id="IntervalMonitoringText"><b>Интервал мониторинга (минут)</b></span>
+      <br>
+      <input class="loginArea" id="IntervalMonitoringArea" type="text" rows="1" maxlength="4" required pattern="[1-9][0-9]{0,3}"> <!-- first digit not 0 + 3 any digits-->
+      <br>
+      <span class="passwordText" id="IntervalDataText" ><b>Интервал записи (минут)</b></span>
+      <br>
+      <input class="passwordArea" id="IntervalDataArea" type="text" rows="1" maxlength="4" required pattern="[1-9][0-9]{0,3}"> <!-- first digit not 0 + 3 any digits-->
+      <br>
+      <div class="acceptButtonContainer" id="IntervalAcceptButtonContainer">
+        <button class="acceptButtonSave" id="IntervalAcceptButton" type="submit" onclick='set_intervals_settings()'>
+      </div>
+  </div>
+  <div class="versionText">
+    <span class="versionTextTitle"><i>...</i></span>
+  </div>
+</div>
+
+<div class="screen" id="SYSTEMSCREEN">
+  <div class="title">
+    <span><b>Настройки устройства</b></span>
+  </div>
+  
+  <div class="frame" id="SysLoginFrame">
+      <span class="loginText" id="SysLoginText"><b>Логин</b></span>
+      <br>
+      <input class="loginArea" id="SysLoginArea" type="text" rows="1" maxlength="32" required pattern="[\w \s]{3,32}"> <!-- 3 - 32 char-->
+      <br>
+      <span class="passwordText" id="SysPasswordText"><b>Пароль</b></span>
+      <br>
+      <div class="password-section">
+        <input class="passwordArea" id="SysPasswordArea" type="password" rows="1" maxlength="32" required pattern="[\S]{3,32}"> <!-- 3 - 32 non whitespace char-->
+        <img src="eye.png" class="PasswordEye" id="SysPasswordEye" onclick="swap_system_password_visible()"> 
+      </div>
+      <br>
+      <div class="acceptButtonContainer" id="SysAcceptButtonContainer">
+        <button class="acceptButtonSave" id="SysAcceptButton" type="submit" onclick='set_device_settings()'>
+      </div>
+  </div>
+
+  <div class="title">
+    <span><b>Система</b></span>
+  </div>
+
+  <div class="frame">
+    <div class="acceptButtonContainer">
+      <button class="acceptButtonReset" type="submit" onclick='reset_settings()'>
+      <button class="acceptButtonReboot" type="submit" onclick='reboot()'>
+    </div>
+  </div>
+  <div class="versionText">
+    <span class="versionTextTitle"><i>...</i></span>
+  </div>
+</div>
+
+<div class="screen" id="FACTORY">
+
+  <div class="title">
+    <span><b>Настройка ID</b></span>
+  </div>
+  
+  <div class="frame" id="FactoryLoginFrame">
+      <span class="loginText" id="FactoryLoginText"><b>ID</b></span>
+      <br>
+      <input class="loginArea" id="FactoryLoginArea" type="text" rows="1" maxlength="" required pattern="[\d]{4,8}"> <!-- 4 - 8 digit-->
+      <br>
+      <div class="acceptButtonContainer" id="FactoryAcceptButtonContainer">
+        <button class="acceptButtonSave" id="FactoryAcceptButton" type="submit" onclick='set_factory_settings()'>
+      </div>
+  </div>
+
+  <div class="versionText">
+    <span class="versionTextTitle"><i>...</i></span>
+  </div>
+</div>
+
+<script>
+  //force_open_screen_debug(4);
+  get_version_string();
+  force_open_login_screen();
+  update_state();
+  setInterval(update_state, 2000);
+</script>
+
+</body>
+</html>

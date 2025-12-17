@@ -1,0 +1,13 @@
+{
+  "name": "@bletransponder",
+  "version": "0.0.0",
+  "devDependencies": {
+    "i": "^0.3.7",
+    "inline-source-cli": "^2.0.0",
+    "npm": "^10.8.3",
+    "shx": "^0.3.4"
+  },
+  "scripts": {
+    "build": "inline-source --compress < index.html > build/index.html && shx cp *.png build/"
+  }
+}
