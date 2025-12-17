@@ -298,10 +298,14 @@ extern "C" void app_main()
     init_bme280_sensor();
     init_nvs_flash();
     read_settings_nvs();
-
-    vTaskDelay(300000 / portTICK_PERIOD_MS);
-
-    xTaskCreate(networkTask, "networkTask", 8096, NULL, 10, &networkTaskHandle);
-    xTaskCreate(timerTask, "timerTask", 2048, NULL, 10, &timerTaskHandle);
+    
+    for(int i = 0; i < 120 ; i++)
+    {
+        ESP_LOGI("countdown", "%d", i);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
+    
+    xTaskCreate(networkTask, "networkTask", 8192, NULL, 10, &networkTaskHandle);
+    xTaskCreate(timerTask, "timerTask", 16384, NULL, 10, &timerTaskHandle);
     xTaskCreate(restartTask, "restartTask", 2048, NULL, 10, &restartTaskHandle);
 }

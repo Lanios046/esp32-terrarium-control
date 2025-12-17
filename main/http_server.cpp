@@ -62,6 +62,7 @@ static esp_err_t index_handler(httpd_req_t *req) {
 void http_server_start() {
     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
     config.max_uri_handlers = 10;
+    config.stack_size = 32768;
     
     ESP_LOGI(HTTP_TAG, "Starting HTTP server on port: '%d'", config.server_port);
     
