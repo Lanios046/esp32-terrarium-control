@@ -23,3 +23,5 @@ INCLUDE_DIRS
 "../."
 "../etl/include"
 )
+
+target_add_binary_data(${COMPONENT_LIB} "${CMAKE_CURRENT_SOURCE_DIR}/logs.html" TEXT)

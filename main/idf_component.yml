@@ -2,6 +2,7 @@
 dependencies:
   espressif/led_strip: ^2.4.1
   espressif/bme280: ^0.1.1
+  espressif/mdns: "^1.0.7"
   ## Required IDF version
   idf:
     version: '>=4.1.0'

@@ -2,6 +2,7 @@
 #define LOGS_H
 
 #include <stddef.h>
+#include <stdint.h>
 
 #define LOG_BUFFER_SIZE 8192
 #define MAX_LOG_ENTRIES 200

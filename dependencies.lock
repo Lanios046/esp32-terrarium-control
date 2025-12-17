@@ -28,19 +28,19 @@ dependencies:
       type: service
     version: 0.5.3
   espressif/i2c_bus:
-    component_hash: e3dddc78baa172f4768f3973fbecbd6c6c1f2cb23cc6a36cf3132758be092482
+    component_hash: 4e990dc11734316186b489b362c61d41f23f79d58bc169795cec215e528cba14
     dependencies:
     - name: espressif/cmake_utilities
       registry_url: https://components.espressif.com
       require: private
-      version: 0.*
+      version: '*'
     - name: idf
       require: private
       version: '>=4.0'
     source:
       registry_url: https://components.espressif.com
       type: service
-    version: 1.4.0
+    version: 1.5.0
   espressif/led_strip:
     component_hash: 28c6509a727ef74925b372ed404772aeedf11cce10b78c3f69b3c66799095e2d
     dependencies:
@@ -51,6 +51,16 @@ dependencies:
       registry_url: https://components.espressif.com/
       type: service
     version: 2.5.5
+  espressif/mdns:
+    component_hash: 29e47564b1a7ee778135e17fbbf2a2773f71c97ebabfe626c8eda7c958a7ad16
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.9.1
   idf:
     source:
       type: idf
@@ -58,7 +68,8 @@ dependencies:
 direct_dependencies:
 - espressif/bme280
 - espressif/led_strip
+- espressif/mdns
 - idf
-manifest_hash: 28b6548086ea2e676796debb0b97cb3a3a023489caeb3b70efc1b9d888349c83
+manifest_hash: 91550a5cba000e5d1aa1c73625f504183a74e1190a3038f6e14bddba5105f13c
 target: esp32
 version: 2.0.0
