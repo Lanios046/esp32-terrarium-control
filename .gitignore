@@ -11,7 +11,6 @@ CMakeListsPrivate.txt
 /.idea/
 /cmake-build-debug/
 /build/
-/ui/node_modules/
 
 .idea/
 

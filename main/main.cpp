@@ -14,11 +14,15 @@
 
 #include "esp_log.h"
 #include "esp_netif_sntp.h"
+#include <stdarg.h>
 
 #include "main.h"
 #include "settings.h"
 #include "config.h"
 #include "wifi.h"
+#include "logs.h"
+#include "http_server.h"
+#include "mdns_manager.h"
 
 constexpr auto TIME_TAG = "TIME";
 constexpr auto TIME_SERVER = "time.windows.com";
@@ -41,6 +45,59 @@ static i2c_config_t conf = {
 TaskHandle_t networkTaskHandle = NULL;
 TaskHandle_t timerTaskHandle = NULL;
 TaskHandle_t restartTaskHandle = NULL;
+
+static int (*original_vprintf)(const char*, va_list) = NULL;
+
+static int log_vprintf(const char* fmt, va_list args) {
+    char buffer[256];
+    va_list args_copy;
+    va_copy(args_copy, args);
+    int len = vsnprintf(buffer, sizeof(buffer), fmt, args_copy);
+    va_end(args_copy);
+    
+    if (len > 0 && len < sizeof(buffer)) {
+        buffer[len] = '\0';
+        
+        const char* tag = "LOG";
+        char level = 'I';
+        
+        if (strstr(buffer, "E (") || strstr(buffer, "ERROR")) {
+            level = 'E';
+        } else if (strstr(buffer, "W (") || strstr(buffer, "WARN")) {
+            level = 'W';
+        } else if (strstr(buffer, "I (") || strstr(buffer, "INFO")) {
+            level = 'I';
+        } else if (strstr(buffer, "D (") || strstr(buffer, "DEBUG")) {
+            level = 'D';
+        }
+        
+        const char* tag_start = strstr(buffer, "(");
+        if (tag_start) {
+            const char* tag_end = strstr(tag_start, ")");
+            if (tag_end && tag_end - tag_start > 1) {
+                char tag_buf[16] = {0};
+                size_t tag_len = tag_end - tag_start - 1;
+                if (tag_len < sizeof(tag_buf) - 1) {
+                    strncpy(tag_buf, tag_start + 1, tag_len);
+                    tag_buf[tag_len] = '\0';
+                    tag = tag_buf;
+                }
+            }
+        }
+        
+        const char* msg_start = strstr(buffer, ": ");
+        if (msg_start && msg_start[2] != '\0') {
+            logs_add(tag, level, msg_start + 2);
+        } else {
+            logs_add(tag, level, buffer);
+        }
+    }
+    
+    if (original_vprintf) {
+        return original_vprintf(fmt, args);
+    }
+    return vprintf(fmt, args);
+}
 
 static void networkTask(void *arg)
 {
@@ -183,6 +240,13 @@ void set_wifi_connection_flag(bool isConnected)
     {
         if (!timeIsSync)
             synctime();
+        
+        static bool services_started = false;
+        if (!services_started) {
+            mdns_start();
+            http_server_start();
+            services_started = true;
+        }
     }
 }
 
@@ -227,6 +291,9 @@ static void init_nvs_flash()
 
 extern "C" void app_main() 
 {
+    logs_init();
+    original_vprintf = esp_log_set_vprintf(log_vprintf);
+    
     init_gpio_pins();
     init_bme280_sensor();
     init_nvs_flash();
